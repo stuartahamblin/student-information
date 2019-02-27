@@ -3,44 +3,39 @@ import javax.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = students)
+@Table(name = "students")
 public class Student {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
 
-    @column(length = 10)
+    @Column(length = 10)
     private String SchoolYr;
 
-    @column
-    private int Campus;
+    @Column(length = 10)
+    private String Campus;
 
-    @column
-    private long StudentID;
+    @Column(length = 10)
+    private String StudentID;
 
-//    @column
-//    private date EntryDate;
+    @Column(length = 20)
+    private String EntryDate;
 
-    @column
+    @Column(length = 10)
     private long GradeLevel;
 
-    @column(length = 100)
+    @Column(length = 100)
     private String firstName;
 
-    @column(length = 100)
+    @Column(length = 100)
     private String middleName;
 
-    @column (nullable = false, length = 100)
+    @Column (nullable = false, length = 100)
     private String lastName;
 
-//    id int(10) unsigned NOT NULL AUTO_INCREMENT,
-//    school_yr VARCHAR(10),
-//    campus INT,
-//    student_id LONG,
-//    entry_date DATE,
-//    grade_Level INT,
-//    first_name VARCHAR(100),
-//    middle_name VARCHAR(100),
-//    last_name VARCHAR(100) NOT NULL,
+    public Student() {
+    }
+
 
 }
