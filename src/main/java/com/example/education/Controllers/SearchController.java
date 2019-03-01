@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @Controller
 public class SearchController {
@@ -24,14 +25,14 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String welcome(){
+    public String welcome(Model model){
+        model.addAttribute("allStudents", studentDao.findAll());
         return "search";
     }
 
     @PostMapping("/search")
     public String searchStudents(Model model, @RequestParam(name = "student-search") String studentSearch, @RequestParam(name = "search-criteria") String searchCriteria){
-        ArrayList<Student> searchResults;
-        String res;
+        HashSet<Student> searchResults;
         switch(searchCriteria){
             case("1"):
                 searchResults = studentDao.findAllByFirstNameIsStartingWith(studentSearch);
@@ -40,6 +41,8 @@ public class SearchController {
                 searchResults.addAll(studentDao.findAllBySIdStartingWith(studentSearch));
                 searchResults.addAll(studentDao.findAllByGradeLevel(studentSearch));
                 searchResults.addAll(studentDao.findAllByCampusStartingWith(studentSearch));
+//                searchResults.addAll(studentDao.findAllBySchoolYr(studentSearch));
+//                searchResults.addAll(studentDao.findAllByEntryDate(studentSearch));
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("2"):
@@ -66,7 +69,7 @@ public class SearchController {
     }
 
     @GetMapping("/search/results")
-    public String showResults(@ModelAttribute (name="searchResults") ArrayList<Student> searchResults, Model model){
+    public String showResults(@ModelAttribute (name="searchResults") HashSet<Student> searchResults, Model model){
         return "search/results";
     }
 }
