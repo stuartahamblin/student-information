@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to the Student Directory!</h2>
+        <form th:action="@{/search}" th:method="post">
+            <div class="row">
+                <div class="col s12">
+                    <input placeholder="Student Search" id="student-search" name="student-search" type="text" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <select id="search-criteria" name="search-criteria">
+                        <option value="1">General Search</option>
+                        <option value="2">First Name</option>
+                        <option value="3">Last Name</option>
+                        <option value="4">Student ID</option>
+                        <option value="5">Grade Level</option>
+                        <option value="6">Campus</option>
+                        <label>Materialize Select</label>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <button class="col s3" type="submit" value="submit">Search</button>
+            </div>
+        </form>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,46 +1,105 @@
 package com.example.education.Models;
 import javax.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
+
+import java.util.List;
 
 @Entity
-@Table(name = students)
+@Table(name = "students")
 public class Student {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
 
-    @column(length = 10)
-    private String SchoolYr;
+    @Column(length = 10)
+    private String schoolYr;
 
-    @column
-    private int Campus;
+    @Column(length = 10)
+    private String campus;
 
-    @column
-    private long StudentID;
+    @Column(length = 10)
+    private String sId;
 
-//    @column
-//    private date EntryDate;
+    @Column(length = 20)
+    private String entryDate;
 
-    @column
-    private long GradeLevel;
+    @Column(length = 10)
+    private String gradeLevel;
 
-    @column(length = 100)
+    @Column(length = 100)
     private String firstName;
 
-    @column(length = 100)
+    @Column(length = 100)
     private String middleName;
 
-    @column (nullable = false, length = 100)
+    @Column (nullable = false, length = 100)
     private String lastName;
 
-//    id int(10) unsigned NOT NULL AUTO_INCREMENT,
-//    school_yr VARCHAR(10),
-//    campus INT,
-//    student_id LONG,
-//    entry_date DATE,
-//    grade_Level INT,
-//    first_name VARCHAR(100),
-//    middle_name VARCHAR(100),
-//    last_name VARCHAR(100) NOT NULL,
+    public Student() {
+    }
+
+    public String getSchoolYr() {
+        return schoolYr;
+    }
+
+    public void setSchoolYr(String schoolYr) {
+        this.schoolYr = schoolYr;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
+
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
+
+    public String getSId() {
+        return sId;
+    }
+
+    public void setSId(String sID) {
+        sId = sID;
+    }
+
+    public String getEntryDate() {
+        return entryDate;
+    }
+
+    public void setEntryDate(String entryDate) {
+        this.entryDate = entryDate;
+    }
+
+    public String getGradeLevel() {
+        return gradeLevel;
+    }
+
+    public void setGradeLevel(String gradeLevel) {
+        this.gradeLevel = gradeLevel;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
 }
