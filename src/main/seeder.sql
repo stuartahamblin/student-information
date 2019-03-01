@@ -8,8 +8,8 @@ DROP TABLE IF EXISTS students;
 CREATE TABLE IF NOT EXISTS students(
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   school_yr VARCHAR(10),
-  campus INT,
-  student_id VARCHAR(10),
+  campus VARCHAR(10),
+  sId VARCHAR(10),
   entry_date VARCHAR(20),
   grade_Level VARCHAR(10),
   first_name VARCHAR(100),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS students(
   PRIMARY KEY (id)
 );
 
-INSERT INTO students (school_yr, campus, student_id, entry_date, grade_Level,first_name, middle_name, last_name) VALUES
+INSERT INTO students (school_yr, campus, s_id, entry_date, grade_level,first_name, middle_name, last_name) VALUES
     ('2019', '105', '025676', '2018-08-27', '4', 'Belinda', null, 'Guzman'),
     ('2019', '041', '010081', '2018-08-27', '6', 'Brittany', 'Martinez', 'Cordova'),
     ('2019', '041', '010094', '2018-08-27', '6', 'Claire', null, 'Genz'),
