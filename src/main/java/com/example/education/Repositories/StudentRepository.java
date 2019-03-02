@@ -1,13 +1,16 @@
 package com.example.education.Repositories;
 import com.example.education.Models.Student;
 import org.springframework.data.repository.CrudRepository;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public interface StudentRepository extends CrudRepository<Student, Long>{
-    ArrayList<Student> findAllByFirstNameIsStartingWith(String firstName);
-    ArrayList<Student> findAllByMiddleNameIsStartingWith(String lastName);
-    ArrayList<Student> findAllByLastNameIsStartingWith(String lastName);
-    ArrayList<Student> findAllBySIdStartingWith(String studentId);
-    ArrayList<Student> findAllByGradeLevel(String gradeLevel);
-    ArrayList<Student> findAllByCampusStartingWith(String campus);
+    HashSet<Student> findAllByFirstNameIsStartingWith(String firstName);
+    HashSet<Student> findAllByMiddleNameIsStartingWith(String lastName);
+    HashSet<Student> findAllByLastNameIsStartingWith(String lastName);
+    HashSet<Student> findAllBySIdStartingWith(String studentId);
+    HashSet<Student> findAllByGradeLevel(String gradeLevel);
+//    HashSet<Student> findAllBySchoolYr(String schoolYr);
+    HashSet<Student> findAllByCampusStartingWith(String campus);
+//    HashSet<Student> findAllByEntryDate(String entryDate);
+    HashSet<Student> findAll();
 }

@@ -1,0 +1,14 @@
+#search-criteria{
+    display: block;
+}
+
+.input-field {
+    position: relative;
+    margin-top: 0;
+    /*margin-bottom: 0;*/
+}
+
+.search-students-button{
+    line-height: 2.8;
+    border-radius: .3em;
+}
