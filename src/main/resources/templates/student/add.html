@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+</head>
+<body>
+<div class="container">
+    <h3>Add a student to the directory!</h3>
+    <form th:action="@{/student/add}" th:method="post">
+        <div class="row">
+            <div class="col s4"><input placeholder="First Name" id="fName" name="fName" type="text" /></div>
+            <div class="col s4"><input placeholder="Middle Name" id="mName" name="mName" type="text" /></div>
+            <div class="col s4"><input placeholder="Last Name" id="lName" name="lName" type="text" /></div>
+        </div>
+        <div class="row">
+            <div class="col s3"><input placeholder="Student ID" id="sid" name="sid" type="text" /></div>
+            <div class="col s3"><input placeholder="Grade" id="grade" name="grade" type="text" /></div>
+            <div class="col s3"><input placeholder="Year" id="year" name="year" type="text" /></div>
+            <div class="col s3"><input placeholder="Campus" id="campus" name="campus" type="text" /></div>
+        </div>
+        <button class="add-student-button waves-effect waves-light btn" type="submit" value="submit">Add Student</button>
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
