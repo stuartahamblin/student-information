@@ -50,21 +50,26 @@
         </div>
     </form>
     <div class="row collection table-display">
-        <div class="col s2"><h6><strong>Student Id</strong></h6></div>
+        <div class="col s1"><h6><strong>Id</strong></h6></div>
         <div class="col s2"><h6><strong>First Name</strong></h6></div>
         <div class="col s2"><h6><strong>Middle Name</strong></h6></div>
         <div class="col s2"><h6><strong>Last Name</strong></h6></div>
-        <div class="col s2"><h6><strong>Grade Level</strong></h6></div>
-        <div class="col s2"><h6><strong>Campus</strong></h6></div>
+        <div class="col s1"><h6><strong>Grade</strong></h6></div>
+        <div class="col s1"><h6><strong>Year</strong></h6></div>
+        <div class="col s1"><h6><strong>Campus</strong></h6></div>
+        <div class="col s2"><h6><strong>Entry Date</strong></h6></div>
     </div>
     <div class="row collection" th:each="student : ${searchResults}" >
-        <div class="col s2"><h6 th:text="${student.getSId()}"></h6></div>
+        <div class="col s1"><h6 th:text="${student.getSId()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getFirstName()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getMiddleName()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getLastName()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getGradeLevel()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getCampus()}"></h6></div>
+        <div class="col s1"><h6 th:text="${student.getGradeLevel()}"></h6></div>
+        <div class="col s1"><h6 th:text="${student.getSchoolYr()}"></h6></div>
+        <div class="col s1"><h6 th:text="${student.getCampus()}"></h6></div>
+        <div class="col s2"><h6 th:text="${student.getEntryDate()}"></h6></div>
     </div>
+    <button href="" class="col s2 search-students-button waves-effect waves-light btn" type="submit" value="submit">Add Student</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!--<script type="text/javascript" src="../../static/js/materialize.min.js"></script>-->

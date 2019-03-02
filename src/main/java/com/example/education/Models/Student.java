@@ -1,6 +1,9 @@
 package com.example.education.Models;
 import javax.persistence.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -36,6 +39,19 @@ public class Student {
     private String lastName;
 
     public Student() {
+    }
+
+    public Student(String firstName, String middleName, String lastName, String sId, String gradeLevel, String schoolYr, String campus){
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.sId = sId;
+        this.gradeLevel = gradeLevel;
+        this.schoolYr = schoolYr;
+        this.campus = campus;
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        this.entryDate = dateFormat.format(date);
     }
 
     public String getSchoolYr() {

@@ -9,8 +9,8 @@ public interface StudentRepository extends CrudRepository<Student, Long>{
     HashSet<Student> findAllByLastNameIsStartingWith(String lastName);
     HashSet<Student> findAllBySIdStartingWith(String studentId);
     HashSet<Student> findAllByGradeLevel(String gradeLevel);
-//    HashSet<Student> findAllBySchoolYr(String schoolYr);
+    HashSet<Student> findAllBySchoolYr(String schoolYr);
     HashSet<Student> findAllByCampusStartingWith(String campus);
-//    HashSet<Student> findAllByEntryDate(String entryDate);
+    HashSet<Student> findAllByEntryDate(String entryDate);
     HashSet<Student> findAll();
 }
