@@ -1,78 +1,71 @@
 package com.example.education.Controllers;
 import com.example.education.Models.Student;
 import com.example.education.Repositories.StudentRepository;
+import com.example.education.Services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashSet;
 
 @Controller
 public class StudentController {
 
-    public final StudentRepository studentDao;
+    private StudentService studentService;
+    private StudentRepository studentRepo;
 
-    public StudentRepository getStudentDao() {
-        return studentDao;
+    public StudentController(StudentService studentService, StudentRepository studentRepo) {
+        this.studentService = studentService;
+        this.studentRepo = studentRepo;
     }
 
-    public StudentController(StudentRepository studentDao) {
-        this.studentDao = studentDao;
-    }
-
-    @GetMapping("/search")
+    @GetMapping("/students")
     public String welcome(Model model){
-        model.addAttribute("allStudents", studentDao.findAll());
-        return "search";
+        model.addAttribute("allStudents", studentRepo.findAll());
+        return "students";
     }
 
-    @PostMapping("/search")
+    @PostMapping("/students")
     public String searchStudents(Model model, @RequestParam(name = "student-search") String studentSearch, @RequestParam(name = "search-criteria") String searchCriteria){
         HashSet<Student> searchResults;
         switch(searchCriteria){
             case("1"):
-                searchResults = studentDao.findAllByFirstNameIsStartingWith(studentSearch);
-                searchResults.addAll(studentDao.findAllByMiddleNameIsStartingWith(studentSearch));
-                searchResults.addAll(studentDao.findAllByLastNameIsStartingWith(studentSearch));
-                searchResults.addAll(studentDao.findAllBySIdStartingWith(studentSearch));
-                searchResults.addAll(studentDao.findAllByGradeLevel(studentSearch));
-                searchResults.addAll(studentDao.findAllByCampusStartingWith(studentSearch));
-                searchResults.addAll(studentDao.findAllBySchoolYr(studentSearch));
-                searchResults.addAll(studentDao.findAllByEntryDate(studentSearch));
+                searchResults = studentRepo.findAllByFirstNameIsStartingWith(studentSearch);
+                searchResults.addAll(studentRepo.findAllByMiddleNameIsStartingWith(studentSearch));
+                searchResults.addAll(studentRepo.findAllByLastNameIsStartingWith(studentSearch));
+                searchResults.addAll(studentRepo.findAllBySIdStartingWith(studentSearch));
+                searchResults.addAll(studentRepo.findAllByGradeLevel(studentSearch));
+                searchResults.addAll(studentRepo.findAllByCampusStartingWith(studentSearch));
+                searchResults.addAll(studentRepo.findAllBySchoolYr(studentSearch));
+                searchResults.addAll(studentRepo.findAllByEntryDate(studentSearch));
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("2"):
-                searchResults = studentDao.findAllByFirstNameIsStartingWith(studentSearch);
+                searchResults = studentRepo.findAllByFirstNameIsStartingWith(studentSearch);
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("3"):
-                searchResults = studentDao.findAllByLastNameIsStartingWith(studentSearch);
+                searchResults = studentRepo.findAllByLastNameIsStartingWith(studentSearch);
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("4"):
-                searchResults = studentDao.findAllBySIdStartingWith(studentSearch);
+                searchResults = studentRepo.findAllBySIdStartingWith(studentSearch);
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("5"):
-                searchResults = studentDao.findAllByGradeLevel(studentSearch);
+                searchResults = studentRepo.findAllByGradeLevel(studentSearch);
                 model.addAttribute("searchResults", searchResults);
                 break;
             case("6"):
-                searchResults =studentDao.findAllByCampusStartingWith(studentSearch);
+                searchResults =studentRepo.findAllByCampusStartingWith(studentSearch);
                 model.addAttribute("searchResults", searchResults);
         }
-        return "/search/results";
+        return "/student/results";
     }
 
-    @GetMapping("/search/results")
+    @GetMapping("/student/results")
     public String showResults(@ModelAttribute (name="searchResults") HashSet<Student> searchResults, Model model){
-        return "search/results";
+        return "student/results";
     }
 
     @GetMapping("/student/add")
@@ -89,9 +82,21 @@ public class StudentController {
                              @RequestParam(name = "year") String year,
                              @RequestParam(name = "campus") String campus){
         Student student = new Student(fName, mName, lName, sid, grade, year, campus);
-        studentDao.save(student);
+        studentRepo.save(student);
 
-        return "redirect:/search";
+        return "redirect:/students";
+    }
+
+    @GetMapping("/student/{id}/edit")
+    public String viewEditStudent(@PathVariable Long id, Model model){
+        model.addAttribute("student", studentService.findOne(id));
+        return "student/edit";
+    }
+
+    @PostMapping("/student/{id}/edit")
+    public String editStudent(@ModelAttribute Student student){
+        studentService.edit(student);
+        return "redirect:/students";
     }
 
 

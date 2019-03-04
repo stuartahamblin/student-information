@@ -1,10 +1,8 @@
 package com.example.education.Models;
 import javax.persistence.*;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -12,7 +10,7 @@ public class Student {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     @Column(length = 10)
     private String schoolYr;
@@ -52,6 +50,13 @@ public class Student {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         this.entryDate = dateFormat.format(date);
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getSchoolYr() {

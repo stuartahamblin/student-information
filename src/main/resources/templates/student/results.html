@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Home</title>
+    <title>Search Results</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <style>
@@ -25,12 +25,15 @@
         .collection{
             margin: 0 0;
         }
+        #indLink{
+            padding: 0.6em 0 0.6em 0.6em;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h3>Welcome to the Student Directory!</h3>
-    <form th:action="@{/search}" th:method="post">
+    <h3>Here are the search results!</h3>
+    <form th:action="@{/students}" th:method="post">
         <div class="row">
             <div id="query" class="col s8">
                 <input placeholder="Student Search" id="student-search" name="student-search" type="text" />
@@ -59,8 +62,8 @@
         <div class="col s1"><h6><strong>Campus</strong></h6></div>
         <div class="col s2"><h6><strong>Entry Date</strong></h6></div>
     </div>
-    <div class="row collection" th:each="student : ${allStudents}" >
-        <div class="col s1"><h6 th:text="${student.getSId()}"></h6></div>
+    <div class="row collection" th:each="student : ${searchResults}" >
+        <div id="indLink" class="col s1"><a th:href="@{'/student/' + ${student.getId()} + '/edit'}" th:method="post" th:text="${student.getSId()}" /></div>
         <div class="col s2"><h6 th:text="${student.getFirstName()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getMiddleName()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getLastName()}"></h6></div>
@@ -69,6 +72,9 @@
         <div class="col s1"><h6 th:text="${student.getCampus()}"></h6></div>
         <div class="col s2"><h6 th:text="${student.getEntryDate()}"></h6></div>
     </div>
+    <form th:action="@{/student/add}" th:method="get">
+        <button class="col s2 waves-effect waves-light btn" type="submit" value="submit">Add Student</button>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!--<script type="text/javascript" src="../../static/js/materialize.min.js"></script>-->
