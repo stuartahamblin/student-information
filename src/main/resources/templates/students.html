@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Search Results</title>
+    <title>Home</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <style>
@@ -25,12 +25,19 @@
         .collection{
             margin: 0 0;
         }
+        .edit-student{
+            margin-left: .5em;
+            padding: 0 .2em 0 .2em;
+        }
+        #indLink{
+            padding: 0.6em 0 0.6em 0.6em;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h3>Here are the search results!</h3>
-    <form th:action="@{/search}" th:method="post">
+    <h3>Welcome to the Student Directory!</h3>
+    <form th:action="@{/students}" th:method="post">
         <div class="row">
             <div id="query" class="col s8">
                 <input placeholder="Student Search" id="student-search" name="student-search" type="text" />
@@ -59,17 +66,21 @@
         <div class="col s1"><h6><strong>Campus</strong></h6></div>
         <div class="col s2"><h6><strong>Entry Date</strong></h6></div>
     </div>
-    <div class="row collection" th:each="student : ${searchResults}" >
-        <div class="col s1"><h6 th:text="${student.getSId()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getFirstName()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getMiddleName()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getLastName()}"></h6></div>
-        <div class="col s1"><h6 th:text="${student.getGradeLevel()}"></h6></div>
-        <div class="col s1"><h6 th:text="${student.getSchoolYr()}"></h6></div>
-        <div class="col s1"><h6 th:text="${student.getCampus()}"></h6></div>
-        <div class="col s2"><h6 th:text="${student.getEntryDate()}"></h6></div>
+    <div class="row collection" th:each="student : ${allStudents}" >
+        <form th:method="get" th:action="@{'/student/' + ${student.getId()} + '/edit'}" >
+            <div class="col s1"><h6 th:text="${student.sId}"></h6></div>
+            <div class="col s2"><h6 th:text="${student.firstName}"></h6></div>
+            <div class="col s2"><h6 th:text="${student.middleName}"></h6></div>
+            <div class="col s2"><h6 th:text="${student.lastName}"></h6></div>
+            <div class="col s1"><h6 th:text="${student.gradeLevel}"></h6></div>
+            <div class="col s1"><h6 th:text="${student.schoolYr}"></h6></div>
+            <div class="col s1"><h6 th:text="${student.campus}"></h6></div>
+            <div class="col s2"><span th:text="${student.entryDate}"></span><button class="edit-student waves-effect waves-light btn" type="submit"><i class="material-icons">mode_edit</i></button></div>
+        </form>
     </div>
-    <button href="" class="col s2 search-students-button waves-effect waves-light btn" type="submit" value="submit">Add Student</button>
+    <form th:action="@{/student/add}" th:method="get">
+        <button class="col s2 waves-effect waves-light btn" type="submit" value="submit">Add Student</button>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!--<script type="text/javascript" src="../../static/js/materialize.min.js"></script>-->
